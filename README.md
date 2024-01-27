@@ -1,2 +1,2 @@
-# bilge-yolu-vue
-bilge-yolu-vue
+# vue-taslak
+vue-taslak
