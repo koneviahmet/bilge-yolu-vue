@@ -12,6 +12,12 @@ const directionPageArr = [
       footer: false
   },
   {
+    page: "QuesitonsHome",
+    menu: false,
+    header: false,
+    footer: false
+  },
+  {
       page: "UserSignIn",
       menu: false
   },

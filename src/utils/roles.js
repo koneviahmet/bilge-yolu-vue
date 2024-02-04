@@ -29,6 +29,12 @@ const rolePageArr = {
   SchemaDetail: [2, 3],
   SchemaList: [2, 3],
   SchemaSearch: [2, 3],
+  QuesitonsHome: [1,2, 3],
+  QuesitonsCreate: [1, 2, 3], 
+  QuesitonsUpdate: [1,2, 3], 
+  QuesitonsDetail: [1,2, 3], 
+  QuesitonsList: [1,2, 3], 
+  QuesitonsSearch: [1,2, 3], 
   empty: [],
 };
 

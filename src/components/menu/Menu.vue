@@ -63,7 +63,11 @@ const urlArr = ref([
   },
   {
     to: "/error",
-    title: "Error",
+    title: "Error" 
+        },
+        {
+            to: "/quesitons",
+            title: "Quesitons",
   },
 ]);
 </script>

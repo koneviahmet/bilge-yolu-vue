@@ -7,11 +7,13 @@ import { infoRouters } from "./routers/info.js";
 import { userRouters } from "./routers/user.js";
 import { schemaRouters } from "./routers/schema.js";
 import { errorRouters } from "./routers/error.js";
+import { quesitonsRouters } from "./routers/quesitons.js" 
 //import
 
 const router = createRouter({ 
     routes: [
         ...homeRouters,
+        ...quesitonsRouters,
         ...infoRouters,
         ...userRouters,
         ...schemaRouters,
