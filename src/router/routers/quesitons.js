@@ -14,6 +14,11 @@ export const quesitonsRouters = [
     component: () => import(`../../views/${defaultPath}/Create.vue`),
   },
   {
+    name: `${defaultPathName}Print`,
+    path: `/${defaultPath}/print`,
+    component: () => import(`../../views/${defaultPath}/Print.vue`),
+  },
+  {
     name: `${defaultPathName}Update`,
     path: `/${defaultPath}/update/:id`,
     component: () => import(`../../views/${defaultPath}/Update.vue`),

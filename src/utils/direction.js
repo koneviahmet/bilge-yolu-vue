@@ -18,6 +18,12 @@ const directionPageArr = [
     footer: false
   },
   {
+    page: "QuesitonsPrint",
+    menu: false,
+    header: false,
+    footer: false
+  },
+  {
       page: "UserSignIn",
       menu: false
   },

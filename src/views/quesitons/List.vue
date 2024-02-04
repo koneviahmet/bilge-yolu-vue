@@ -2,28 +2,28 @@
   <div>
 
   <div class="overflow-x-auto p-4">
-    <div class="flex items-end justify-end w-full">
+    <div class="flex space-x-2 justify-end w-full">
+      <router-link to="/quesitons/print" class="btn btn-sm">Yazdır</router-link>       
       <button class="btn btn-sm" @click="confirmDeleteAll()">Tümünü Sil</button>
     </div>
 
-    <table class="table w-full">
-      <thead>
-        <tr>
-          <th>ITEM</th> 
-          <th>OPTIONS</th>
-        </tr>
-      </thead> 
-      <tbody>
-        <tr v-for="item in quesitonsData" :key="item.id">
-          <th class="w-full">{{item.description}}</th> 
-          <th>{{item.img}}</th> 
-          <td class="flex space-x-1">
-            <button @click="editBTN(item.id)" class="btn btn-sm">Düzenle</button>
-            <a class="btn btn-error btn-sm" @click="itemDelete(item)" :class="quesitonsLoading && 'loading btn-disabled'">Sil</a>    
-          </td> 
-        </tr>
-      </tbody>
-    </table>
+    <div class="p-2 flex flex-col-reverse space-y-2">
+      <div class="border bg-white p-2" v-for="item, k in quesitonsData" :key="item.id">
+        <div class="flex">
+          <div class="w-full font-bold">{{k + 1}} - {{ item.point }}</div>
+          <div class="flex space-x-1 p-2">
+            <button @click="editBTN(item.id)" class="btn btn-sm">D</button>
+            <a class="btn btn-error btn-sm" @click="itemDelete(item)" :class="quesitonsLoading && 'loading btn-disabled'">S</a>    
+          </div>
+        </div>
+        <div class="flex">
+          <div class="m-2" v-if="item.img">
+            <img :src="item.img" class="h-12" srcset="">
+          </div>
+          <div class="w-full">{{item.description}}</div>
+        </div>
+      </div>
+    </div>
   </div>
 
 

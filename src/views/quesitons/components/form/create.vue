@@ -15,7 +15,7 @@
           <label class="label">
             <span class="label-text">Açıklama</span>
           </label> 
-          <textarea class="textarea textarea-bordered" v-model="description" placeholder="Bio"></textarea>
+          <textarea class="textarea textarea-bordered" v-model="description" placeholder="Açıklama"></textarea>
 
           <label class="label">
             <span class="label-text-alt text-red-400">{{ errorDescription }}</span>
@@ -28,9 +28,21 @@
           <label class="label">
             <span class="label-text">Resim</span>
           </label> 
-          <input type="text" placeholder="name" v-model="img" class="input input-bordered">
+          <input type="text" placeholder="Resim" v-model="img" class="input input-bordered">
           <label class="label">
             <span class="label-text-alt text-red-400">{{ errorImg }}</span>
+          </label>
+        </div>
+      <!--#form-->
+
+      <!--form-->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Puan</span>
+          </label> 
+          <input type="text" placeholder="Puan" v-model="point" class="input input-bordered">
+          <label class="label">
+            <span class="label-text-alt text-red-400">{{ errorPoint }}</span>
           </label>
         </div>
       <!--#form-->
@@ -50,6 +62,7 @@
 
 import useCreate from './createValidate';
 import { useRouter } from "vue-router";
+import { onMounted } from "vue";
 import useQuesitons from '../../../../compositions/useModelQuesitons'
 
 export default {
@@ -58,6 +71,10 @@ export default {
         const router = useRouter();
         const {quesitonsLoading, quesitonsError, addQuesitons} = useQuesitons();
        
+        onMounted(() => {
+          values.point = 100
+        })
+
         const save = () => {
             validate().then(validateSuccess => {
                 !validateSuccess.valid && console.log("Check the form.", errors.value) 
@@ -66,6 +83,7 @@ export default {
                       console.log('Eklendi')
                       values.description = ""
                       values.img = ""
+                      values.point = ""
                     })
                 }
             }).catch(validateError => {

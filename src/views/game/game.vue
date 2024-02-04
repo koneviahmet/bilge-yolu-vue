@@ -134,7 +134,7 @@ export default {
             let newStartMessages = [
                 '<strong>Oyuna başlamadan önce dikkatlice okuyunuz.</strong>',
                 'Öğrencilerden <strong>bir kişiyi</strong> akıllı tahtaya <strong>bir kişiyide</strong> kasanın başına seçiniz ve diğer kalan öğrenci sayısını aşşağıdaki texte yazınız.',
-                'Oyun ile ilgili kartları <a href="#">buradan</a> indirebilirsiniz. ',
+                'Oyun ile ilgili kartları <a class="text-red-800 font-bold" href="#quesitons">buradan</a> indirebilirsiniz. ',
                 'Sınıf mevcudunuz çok ise oyunun daha verimli olması için üçer kişilik gruplar kurmanızı tavsiye ederiz.',
                 'Başaşrılar.'
             ];
