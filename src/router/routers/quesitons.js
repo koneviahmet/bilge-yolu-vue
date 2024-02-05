@@ -19,6 +19,11 @@ export const quesitonsRouters = [
     component: () => import(`../../views/${defaultPath}/Print.vue`),
   },
   {
+    name: `${defaultPathName}Money`,
+    path: `/${defaultPath}/money`,
+    component: () => import(`../../views/${defaultPath}/Money.vue`),
+  },
+  {
     name: `${defaultPathName}Update`,
     path: `/${defaultPath}/update/:id`,
     component: () => import(`../../views/${defaultPath}/Update.vue`),

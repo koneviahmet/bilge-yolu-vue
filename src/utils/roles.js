@@ -32,6 +32,7 @@ const rolePageArr = {
   QuesitonsHome: [1,2, 3],
   QuesitonsCreate: [1, 2, 3], 
   QuesitonsPrint: [1, 2, 3], 
+  QuesitonsMoney: [1, 2, 3], 
   QuesitonsUpdate: [1,2, 3], 
   QuesitonsDetail: [1,2, 3], 
   QuesitonsList: [1,2, 3], 

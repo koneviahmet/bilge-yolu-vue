@@ -3,6 +3,7 @@
 
   <div class="overflow-x-auto p-4">
     <div class="flex space-x-2 justify-end w-full">
+      <router-link to="/quesitons/money" class="btn btn-sm">Puanlar</router-link>       
       <router-link to="/quesitons/print" class="btn btn-sm">Yazdır</router-link>       
       <button class="btn btn-sm" @click="confirmDeleteAll()">Tümünü Sil</button>
     </div>
@@ -36,7 +37,6 @@ import useQuesitons from "../../compositions/useModelQuesitons";
 const { quesitonsLoading, quesitonsData, quesitonsError, getQuesitonss, deleteQuesitons, confirmDeleteAll} = useQuesitons();
 
 const emit = defineEmits(["edit"])
-
 onMounted(() => getQuesitonss());
 
 const editBTN = (id) => {

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col overflow-hidden" v-for="d, key in data" :key="key">
-    <pagex  class="w-full flex flex-wrap overflow-hidden element" size="A4">
+    <pagex  class="w-full flex flex-wrap" size="A4">
       <div class="w-1/2 flex bg-gray-200 min-h-max h-40 border border-dashed border-gray-800 p-3" v-for="i in d" :key="i.id">
         <div class="h-full w-full bg-white rounded-lg p-2 relative">
           <div class="text-lg">
@@ -62,8 +62,6 @@ pagex[size="A4"] {
   
 }
 @media print {
-
-  pagex {overflow: hidden;}
 
   body, pagex[size="A4"] {
     margin: 0cm;
