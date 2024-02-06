@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col overflow-hidden" v-for="d, key in data" :key="key">
     <pagex  class="w-full flex flex-wrap" size="A4">
-      <div class="w-1/2 flex  min-h-max h-40 border border-dashed p-3" v-for="i in d" :key="i.id" :class="`bg-${i.color}`">
+      <div class="w-1/2 flex min-h-max h-40 border border-dashed p-3" v-for="i in d" :key="i.id" :class="` bg-${i.color} `">
         <div class="h-full w-full bg-white rounded-lg flex flex-col items-center justify-center space-y-2">
 
           <div><img :src="i.img" class="h-14" alt=""></div>
