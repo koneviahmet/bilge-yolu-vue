@@ -62,7 +62,7 @@ const selectBTN = () => {
             emit('selected', selectingIndex.value[0])
             clearInterval(interval)
         }
-    }, 500);    
+    }, 10);    
 }
 
 

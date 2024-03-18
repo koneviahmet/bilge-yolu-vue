@@ -7,6 +7,8 @@
             </div>
         </div>
 
+        
+
         <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
             <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
         </div>
@@ -23,6 +25,17 @@
             </div>
         </div>
 
+
+        Kedi Yakala point: {{ point }} {{ catPosition }}
+        <div class="bg-red-200 relative h-20">
+            <!--cat-->
+            <div class="bg-green-300 h-12 w-12 absolute bottom-0 rounded-full" :style="catStyle"></div>
+
+            <!--student-->
+            <div class="bg-red-300 h-12 w-12 absolute bottom-0 rounded-full" :style="studentStyle"></div>
+            
+        </div>
+
         <!-- Gruplar -->
         <div class="flex">
             <div class="bg-gray-300">
@@ -33,8 +46,9 @@
 </template>
 
 
+
 <script setup>
-import {defineProps, ref, onMounted, watch} from 'vue'
+import {defineProps, ref, onMounted, watch, computed} from 'vue'
 import StudentGroup from '../components/studentGroup.vue';
 import Student from '../components/student.vue';
 
@@ -48,6 +62,10 @@ const trueCorrectArr     = ref([]) //doğru cevaplayanlar
 const isLoading          = ref(false)
 const info               = ref(null)
 const isAnswerButtonShow = ref(false);
+const point              = ref(0)
+const catInterval        = ref(null)
+const catPosition        = ref(0)
+const isFinish           = ref(false)
 
 watch(selectedStudent, (s) => {
     if (s != null) {
@@ -55,13 +73,36 @@ watch(selectedStudent, (s) => {
         setTimeout(() => isAnswerButtonShow.value = true, 200);
         selectedArr.value = [...selectedArr.value, s]
         isLoading.value = false
+
+        catStartAnimate()
     }
 })
 
 
+const catStyle = computed(() => {
+    return `left: ${catPosition.value}%`
+})
+
+const studentStyle = computed(() => {
+    return `left: ${point.value}%`
+})
+
+watch(point, (cPoint) => {
+    if (cPoint >= catPosition.value) {
+        info.value = "Tebrikler yakaladın."
+        isFinish.value = true
+        isAnswerButtonShow.value = false
+        catPosition.value = point.value + 2
+        clearInterval(catInterval.value)
+    }   
+})
+
 const selectBTN = () => {
+    clearInterval(catInterval.value)
     isLoading.value          = true
     isAnswerButtonShow.value = false
+    point.value = 0
+    isFinish.value = false
 
     info.value = "Soruyu cevaplayacak öğrenci seçiliyor."
     startSelect.value = true
@@ -69,13 +110,35 @@ const selectBTN = () => {
 }
 
 
+
+const catStartAnimate = () => {
+    catPosition.value = 10
+    
+    catInterval.value = setInterval(() => {
+        catPosition.value += 2
+        if (catPosition.value >= 100) {
+            //kaybetti demektir
+            isFinish.value = true
+            info.value = "Üzgünüm kediyi kaçırdınız."
+            clearInterval(catInterval.value)
+            isAnswerButtonShow.value = false
+        }
+    }, 500);
+}
+
 const answerBTN = (answer) => {
-    isAnswerButtonShow.value = false
     if (answer) {
        info.value = "Tebrikler! Doğru cevapladın."
        trueCorrectArr.value = [...trueCorrectArr.value, students.value[selectedStudent.value]]
+       point.value += 5
+       isAnswerButtonShow.value = false
+       setTimeout(() => {
+            if (!isFinish.value) isAnswerButtonShow.value = true
+       }, 500);
     }else{
         info.value = "Üzgünüm! Yanlış Cevapladın."
+        isAnswerButtonShow.value = false
+        point.value = 0
     }
 }
 

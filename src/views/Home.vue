@@ -42,7 +42,7 @@ import Game4 from './games/game4/game.vue'
 import Game5 from './games/game5/game.vue'
 
 const studentCount = ref(24)
-const game = ref(5)
+const game = ref(6)
 
 const games = [
   {
