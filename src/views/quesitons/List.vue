@@ -3,13 +3,15 @@
 
   <div class="overflow-x-auto p-4">
     <div class="flex space-x-2 justify-end w-full">
+      <router-link to="/" class="btn btn-sm">Oyunlar</router-link>      
       <router-link to="/quesitons/money" class="btn btn-sm">Puanlar</router-link>       
       <router-link to="/quesitons/print" class="btn btn-sm">Yazdır</router-link>       
       <button class="btn btn-sm" @click="confirmDeleteAll()">Tümünü Sil</button>
     </div>
 
-    <div class="p-2 flex flex-col-reverse space-y-2">
-      <div class="border bg-white p-2" v-for="item, k in quesitonsData" :key="item.id">
+    <div class="p-2 flex flex-col-reverse">
+      
+      <div class="border bg-white p-2 mb-2" v-for="item, k in quesitonsData" :key="item.id">
         <div class="flex">
           <div class="w-full font-bold">{{k + 1}} - {{ item.point }}</div>
           <div class="flex space-x-1 p-2">
@@ -24,7 +26,9 @@
           <div class="w-full">{{item.description}}</div>
         </div>
       </div>
+      
     </div>
+
   </div>
 
 
@@ -40,7 +44,6 @@ const emit = defineEmits(["edit"])
 onMounted(() => getQuesitonss());
 
 const editBTN = (id) => {
-
   emit('edit', null)
   setTimeout(() => emit('edit', id), 100);
 };

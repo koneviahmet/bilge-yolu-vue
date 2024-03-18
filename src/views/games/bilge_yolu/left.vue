@@ -6,7 +6,6 @@
                     <li v-for="(msg, key) in messages" :key="key" v-html="msg"></li>
                 </ul>
             </div>
-
             <div class="leftInput" v-if="!game">
                 <input class="input border-gray-600" type="text" placeholder="Sınıf Mevcudu" v-model="oyuncuAdedi"/>
             </div>
@@ -39,9 +38,11 @@
 <script>
 export default {
     name: 'Left',
+    props: ['studentCount'],
     data() {
+        console.log(this.studentCount);
         return {
-            oyuncuAdedi: null
+            oyuncuAdedi: this.studentCount
         }
     },
     props: {
@@ -52,7 +53,7 @@ export default {
         selectGamer: Function,
         animIlerleme: Number,
         messages: Array,
-        oynayanOyuncu: Number
+        studentCount:Number
     }
 }
 </script>

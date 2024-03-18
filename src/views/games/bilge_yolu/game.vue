@@ -1,9 +1,10 @@
 <template>
-      <div id="container">
-
+<div>
+    <div id="container">
           <div class="centerContainer flex h-full w-full">
               <div class="w-full h-full">
                   <Left 
+                    :studentCount="studentCount"
                     :start='start' 
                     :newGame='newGame' 
                     :game='game' 
@@ -43,6 +44,7 @@
                 </div>
           </div>
       </div>
+</div>
 </template>
 
 <script>
@@ -53,6 +55,7 @@ import colorJson from './color.json';
 
 export default {
   name: 'App',
+  props: ['studentCount'],
   data() {
       return {
           newSira: [14,13,12,11,10,9,8,7,6,5,4,3,2,1,15,36,16,35,17,34,18,33,19,20,21,22,23,24,25,26,27,28,29,30,31,32],
@@ -70,7 +73,7 @@ export default {
           oyuncuAdediMin: 2,
           gamers: [],
           messages: []
-      }
+        }
   },
   components: {
     Left,
@@ -286,7 +289,7 @@ export default {
 <style scoped>
 #container{
     position: fixed;
-    height: 100%;
+    height: 92%;
     width: 100%;
     display: grid;
     grid-template: 1fr 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;

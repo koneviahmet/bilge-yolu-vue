@@ -83,7 +83,6 @@ export default {
                       console.log('Eklendi')
                       values.description = ""
                       values.img = ""
-                      values.point = ""
                     })
                 }
             }).catch(validateError => {
