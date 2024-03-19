@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col space-y-4">
         <!-- Seçilenler -->
-        <div class="flex space-x-3 items-center justify-center p-4">   
+        <div class="flex space-x-3 items-center justify-center pt-12">   
             <div>
                 <Student :number="students[0]?.[selectedStudent?.[0]]" :group="1"/>
             </div>
-            <div class="bg-gray-300 rounded-lg p-4">
-                <ArrowRightIcon  class="h-6" v-if="whoAsk == 0"/>
-                <ArrowLeftIcon  class="h-6" v-else/>
+            <div class="p-4">
+                <ArrowRightIcon  class="h-8" v-if="whoAsk == 0"/>
+                <ArrowLeftIcon  class="h-8" v-else/>
             </div>
             <div>
                 <Student :number="students[1]?.[selectedStudent?.[1]]" :group="2"/>
@@ -15,7 +15,7 @@
         </div>
 
         <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
-            <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
+            <button class="btn btn-primary" @click="selectBTN">Seçimi Başlat</button>
         </div>
 
         <div class="flex items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
@@ -32,23 +32,44 @@
         </div>
 
         <!-- Gruplar -->
-        <div class="flex">
-            <div class="bg-gray-300">
-                <div class="flex space-x-2 p-1">
+        <div class="flex h-screen border-t-2 space-x-2 p-4 bg-gray-50">
+            <div class="">
+                <div class="flex items-center justify-center text-3xl py-2 text-gray-500">
+                        1. Grup
+                </div>
+                <div class="flex items-center justify-center space-x-2 p-1">
                     <div class="bg-white px-2 py-1 rounded-lg" v-for="f, key in flowers[0]" :key="key">
-                        {{ f }}
+                        <div class="text-sm text-gray-400">{{ key + 1 }}</div>
+                        <Application :backgroundColor="'#FFF'" :width="64" :height="64" >
+                            <sprite
+                                texture="/flower.png"
+                                :scale="2"
+                                :x="-(64 * (f % 6))" :y="0"
+                                v-if="!flowerAnim"
+                            />
+                        </Application>
                     </div>
                 </div>
                 <StudentGroup :col="4" :trueCorrects="trueCorrectArr[0]" @selected="selectedStudent[0] = $event" :group="1" :start="startSelect" :students="students[0]" />
             </div>
-            <div class="bg-red-300">
-
-                <div class="flex space-x-2 p-1">
+            <div class="">
+                <div class="flex items-center justify-center text-3xl py-2 text-gray-500">
+                        2. Grup
+                </div>
+                <div class="flex items-center justify-center space-x-2 p-1">
                     <div class="bg-white px-2 py-1 rounded-lg" v-for="f, key in flowers[1]" :key="key">
-                        {{ f }}
+                        <div class="text-sm text-gray-400">{{ key + 1 }}</div>
+                        <Application :backgroundColor="'#FFF'" :width="64" :height="64" >
+                            <sprite
+                                texture="/flower.png"
+                                :scale="2"
+                                :x="-(64 * (f % 6))" :y="0"
+                                v-if="!flowerAnim"
+                            />
+                            
+                        </Application>
                     </div>
                 </div>
-
                 <StudentGroup :col="4" :trueCorrects="trueCorrectArr[1]" @selected="selectedStudent[1] = $event" :group="2" :start="startSelect" :students="students[1]" />
             </div>
         </div>
@@ -63,6 +84,7 @@ import Student from '../components/student.vue';
 import { ArrowRightIcon, ArrowLeftIcon} from "@heroicons/vue/solid";
 import useRandIndex from '../compositions/useRandIndex';
 const {selectedIndexError, select, selectingIndex, getRandomSelectIndex, excludedIndexes, selectableLength, selectableSize, selectableIndexes} = useRandIndex()
+import { Application } from 'vue3-pixi'
 
 const props              = defineProps(['studentCount'])
 const startSelect        = ref(false)
@@ -75,10 +97,12 @@ const whoAsk             = ref(null)
 const whoAnswer          = ref(null)
 const info               = ref(null)
 const isAnswerButtonShow = ref(false);
-
+const flowerAnim         = ref(false)
 
 
 const flowers = computed(() => {
+    flowerAnim.value = true
+    setTimeout(() => flowerAnim.value = false, 1);
     let f = [[],[]]
     const firstGroup    = trueCorrectArr.value[0].length
     const secondGroup   = trueCorrectArr.value[1].length

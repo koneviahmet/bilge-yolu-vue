@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col space-y-4">
         <!-- Seçilenler -->
-        <div class="flex space-x-3 items-center justify-center p-4">   
+        <div class="flex space-x-3 items-center justify-center pt-12">   
             <div>
-                <Student :number="students?.[selectedStudent]" :group="1"/>
+                <Student :number="students?.[selectedStudent]" />
             </div>
         </div>
 
         <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
-            <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
+            <button class="btn btn-primary" @click="selectBTN">Seçimi Başlat</button>
         </div>
 
         <div class="flex items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
@@ -24,9 +24,9 @@
         </div>
 
         <!-- Gruplar -->
-        <div class="flex">
-            <div class="bg-gray-300">
-                <StudentGroup :col="12" :trueCorrects="trueCorrectArr" @selected="selectedStudent = $event" :group="1" :start="startSelect" :students="students" />
+        <div class="flex h-screen">
+            <div class="p-2 border-t-2 bg-gray-50">
+                <StudentGroup :col="12" :trueCorrects="trueCorrectArr" @selected="selectedStudent = $event"  :start="startSelect" :students="students" />
             </div>
         </div>
     </div>

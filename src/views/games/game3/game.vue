@@ -50,7 +50,7 @@
         </div>
 
         <div class="absolute w-screen top-0 h-full flex flex-col space-y-6 items-center justify-end pb-20 z-40" v-show="!isLoading">
-            <div class="flex items-center justify-center text-5xl  border-2 bg-white p-2 rounded-lg" :class="isAnswerButtonShow ? 'visible':'invisible'" > 
+            <div class="flex items-center justify-center text-xl  border-2 bg-white p-2 rounded-lg" :class="isAnswerButtonShow ? 'visible':'invisible'" > 
                 {{ whoAnswer + 1 }}. Grup
             </div>
             
@@ -79,17 +79,25 @@
             </div>
 
             <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
-                <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
+                <button class="btn  btn-primary" @click="selectBTN">
+                    Oyunu Başlat
+                </button>
             </div>
         </div>
    
 
         <!-- Gruplar -->
-        <div class="flex">
-            <div class="bg-gray-300">
+        <div class="flex h-screen border-t-2 space-x-2 p-4 bg-gray-50">
+            <div class="">
+                <div class="flex items-center justify-center text-3xl py-2 text-gray-500">
+                        1. Grup
+                </div>
                 <StudentGroup :col="4" :trueCorrects="trueCorrectArr[0]" @selected="selectedStudent[0] = $event" :group="1" :start="startSelect" :students="students[0]" />
             </div>
-            <div class="bg-red-300">
+            <div class="">
+                <div class="flex items-center justify-center text-3xl py-2 text-gray-500">
+                        2. Grup
+                </div>
                 <StudentGroup :col="4" :trueCorrects="trueCorrectArr[1]" @selected="selectedStudent[1] = $event" :group="2" :start="startSelect" :students="students[1]" />
             </div>
         </div>

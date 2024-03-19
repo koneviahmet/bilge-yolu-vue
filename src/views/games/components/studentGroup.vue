@@ -4,7 +4,7 @@
         <div class="flex items-center justify-center p-2" v-if="select_button">
             <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
         </div>
-        <div>
+        <div class="hidden">
             Doğru Sayısı: {{ trueCorrects.length }} 
         </div>
 

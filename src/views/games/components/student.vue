@@ -1,7 +1,10 @@
 <template>
-    <div class="flex flex-col rounded-lg border-2 overflow-hidden " :class="select ? 'bg-yellow-400': 'bg-white'">
-        <div class="p-2 flex items-center justify-center" :class="setBgColor">Öğrenci</div>
-        <div class="flex items-center justify-center p-6 text-xl"> 
+    <div class="flex flex-col rounded-lg border-2 overflow-hidden" :class="select ? 'bg-yellow-400': 'bg-white'">
+        <div class="h-4 flex items-center justify-center" :class="setBgColor">
+        
+        </div>
+
+        <div class="flex items-center justify-center py-4 px-8 text-2xl font-bold text-gray-500"> 
             {{ getNumber }} 
         </div>
         <div class="text-2xs py-1 px-2 bg-gray-100" v-if="info">

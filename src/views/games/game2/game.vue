@@ -1,14 +1,13 @@
 <template>
-
     <div class="flex flex-col space-y-4">
         <!-- Seçilenler -->
-        <div class="flex space-x-3 items-center justify-center p-4">   
+        <div class="flex space-x-3 items-center justify-center pt-12">   
             <div>
                 <Student :number="students[0]?.[selectedStudent?.[0]]" :group="1"/>
             </div>
-            <div class="bg-gray-300 rounded-lg p-4">
-                <ArrowRightIcon  class="h-6" v-if="whoAsk == 0"/>
-                <ArrowLeftIcon  class="h-6" v-else/>
+            <div class="rounded-lg p-4 text-gray-700">
+                <ArrowRightIcon  class="h-8" v-if="whoAsk == 0"/>
+                <ArrowLeftIcon  class="h-8" v-else/>
             </div>
             <div>
                 <Student :number="students[1]?.[selectedStudent?.[1]]" :group="2"/>
@@ -18,7 +17,7 @@
    
 
         <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
-            <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
+            <button class="btn btn-primary" @click="selectBTN">Seçimi Başlat</button>
         </div>
 
         <div class="flex items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
@@ -34,11 +33,17 @@
         </div>
 
         <!-- Gruplar -->
-        <div class="flex">
-            <div class="bg-gray-300">
+        <div class="flex h-screen border-t-2 space-x-2 p-4 bg-gray-50">
+            <div class="">
+                <div class="flex items-center justify-center text-3xl py-2 text-gray-500">
+                        1. Grup
+                </div>
                 <StudentGroup :col="4" :trueCorrects="trueCorrectArr[0]" @selected="selectedStudent[0] = $event" :group="1" :start="startSelect" :students="students[0]" />
             </div>
-            <div class="bg-red-300">
+            <div class="">
+                <div class="flex items-center justify-center text-3xl py-2 text-gray-500">
+                        2. Grup
+                </div>
                 <StudentGroup :col="4" :trueCorrects="trueCorrectArr[1]" @selected="selectedStudent[1] = $event" :group="2" :start="startSelect" :students="students[1]" />
             </div>
         </div>

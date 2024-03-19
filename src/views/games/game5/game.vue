@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col space-y-4">
         <!-- Seçilenler -->
-        <div class="flex space-x-3 items-center justify-center p-4">   
+        <div class="flex space-x-3 items-center justify-center pt-12">   
             <div>
                 <Student :number="students?.[selectedStudent]" :group="1"/>
             </div>
@@ -10,7 +10,7 @@
         
 
         <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
-            <button class="btn btn-sm btn-primary" @click="selectBTN">Seç</button>
+            <button class="btn btn-primary" @click="selectBTN">Seçimi Başlat</button>
         </div>
 
         <div class="flex items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
@@ -25,21 +25,38 @@
             </div>
         </div>
 
-
-        Kedi Yakala point: {{ point }} {{ catPosition }}
-        <div class="bg-red-200 relative h-20">
+        <div class="relative h-20">
             <!--cat-->
-            <div class="bg-green-300 h-12 w-12 absolute bottom-0 rounded-full" :style="catStyle"></div>
+            <div class="absolute bottom-0 " :style="catStyle">
+                <Application :backgroundAlpha="0"  :width="59" :height="75" >
+                    <sprite
+                        texture="/cat.png"
+                        :scale="0.5"
+                        :x="0" :y="-(75 * (catRun % 6))"
+                    />
+                </Application>
+            </div>
+
 
             <!--student-->
-            <div class="bg-red-300 h-12 w-12 absolute bottom-0 rounded-full" :style="studentStyle"></div>
+            <div class="absolute bottom-0" :style="studentStyle">
+                <Application  :backgroundAlpha="0" :width="96" :height="128" >
+                    <sprite
+                        texture="/tomi.png"
+                        :scale="2"
+                        :x="-(96 * (studentRun % 3))" :y="-(128 * 1)"
+                    />
+                </Application>
+            </div>
             
         </div>
+        
+
 
         <!-- Gruplar -->
-        <div class="flex">
-            <div class="bg-gray-300">
-                <StudentGroup :col="12" :trueCorrects="trueCorrectArr" @selected="selectedStudent = $event" :group="1" :start="startSelect" :students="students" />
+        <div class="flex h-screen">
+            <div class="p-2 border-t-2 bg-gray-50">
+                <StudentGroup :col="12" :trueCorrects="trueCorrectArr" @selected="selectedStudent = $event"  :start="startSelect" :students="students" />
             </div>
         </div>
     </div>
@@ -48,6 +65,7 @@
 
 
 <script setup>
+import { Application } from 'vue3-pixi'
 import {defineProps, ref, onMounted, watch, computed} from 'vue'
 import StudentGroup from '../components/studentGroup.vue';
 import Student from '../components/student.vue';
@@ -64,8 +82,13 @@ const info               = ref(null)
 const isAnswerButtonShow = ref(false);
 const point              = ref(0)
 const catInterval        = ref(null)
-const catPosition        = ref(0)
+const catPosition        = ref(10)
 const isFinish           = ref(false)
+const catRun             = ref(0)
+const catRunInterval     = ref(null)
+const studentRun         = ref(0)
+const studentRunInterval = ref(null)
+
 
 watch(selectedStudent, (s) => {
     if (s != null) {
@@ -75,6 +98,7 @@ watch(selectedStudent, (s) => {
         isLoading.value = false
 
         catStartAnimate()
+        studentRunFNC()
     }
 })
 
@@ -92,13 +116,20 @@ watch(point, (cPoint) => {
         info.value = "Tebrikler yakaladın."
         isFinish.value = true
         isAnswerButtonShow.value = false
-        catPosition.value = point.value + 2
+        catPosition.value = point.value + 4
         clearInterval(catInterval.value)
+        clearInterval(catRunInterval.value)
+        clearInterval(studentRunInterval.value)
     }   
 })
 
 const selectBTN = () => {
     clearInterval(catInterval.value)
+    clearInterval(catRunInterval.value)
+    clearInterval(studentRunInterval.value)
+    catRun.value = 0
+    studentRun.value = 0
+
     isLoading.value          = true
     isAnswerButtonShow.value = false
     point.value = 0
@@ -109,10 +140,23 @@ const selectBTN = () => {
     setTimeout(() => startSelect.value = false, 100);
 }
 
+const catRunFNC = () => {
+    catRun.value = 0
+    catRunInterval.value = setInterval(() => {
+        catRun.value++
+    }, 400);
+}
 
+const studentRunFNC = () => {
+    studentRun.value = 0
+    studentRunInterval.value = setInterval(() => {
+        studentRun.value++
+    }, 400);
+}
 
 const catStartAnimate = () => {
     catPosition.value = 10
+    catRunFNC()
     
     catInterval.value = setInterval(() => {
         catPosition.value += 2
@@ -121,10 +165,13 @@ const catStartAnimate = () => {
             isFinish.value = true
             info.value = "Üzgünüm kediyi kaçırdınız."
             clearInterval(catInterval.value)
+            clearInterval(catRunInterval.value)
+            clearInterval(studentRunInterval.value)
             isAnswerButtonShow.value = false
         }
     }, 500);
 }
+
 
 const answerBTN = (answer) => {
     if (answer) {
@@ -136,6 +183,10 @@ const answerBTN = (answer) => {
             if (!isFinish.value) isAnswerButtonShow.value = true
        }, 500);
     }else{
+        clearInterval(catInterval.value)
+        clearInterval(catRunInterval.value)
+        clearInterval(studentRunInterval.value)
+
         info.value = "Üzgünüm! Yanlış Cevapladın."
         isAnswerButtonShow.value = false
         point.value = 0
