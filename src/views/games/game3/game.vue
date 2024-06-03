@@ -1,9 +1,5 @@
 <template>
-
     <div class="flex flex-col space-y-4">
-
-        <!-- Seçilenler -->
-
 
          <!-- saha -->
         <div class="h-screen p-2 bg-green-500" v-show="!isLoading">
@@ -62,18 +58,24 @@
                     <Student :number="students[1]?.[selectedStudent?.[1]]" :group="3"/>
                 </div>
             </div>
-
+      
             <div>
-                <div class="flex items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
+                <div class="flex flex-col items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
+                    <div v-if="isAnswerButtonShow">
+                        <div class="p-4 text-xl bg-white mb-6 rounded-lg" v-if="getQuesiton?.description">
+                            {{ getQuesiton?.description }}
+                        </div>    
+                    </div>
+
                     <div class="flex space-x-2"> 
-                        <button class="btn btn-error" @click="answerBTN(false)">Yanlış</button>
-                        <button class="btn btn-success" @click="answerBTN(true)">Doğru</button>
+                        <button class="btn btn-sm btn-error" @click="answerBTN(false)">Yanlış</button>
+                        <button class="btn btn-sm btn-success" @click="answerBTN(true)">Doğru</button>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center justify-center" :class="info ? 'visible':'invisible'">
-                <div class="w-full bg-blue-200 p-2 rounded-lg">
+                <div class="w-full bg-blue-200 p-2 rounded-lg text-xs">
                     {{ info || '...' }}
                 </div>
             </div>
@@ -114,7 +116,7 @@ import { ArrowRightIcon, ArrowLeftIcon} from "@heroicons/vue/solid";
 import useRandIndex from '../compositions/useRandIndex';
 const {selectedIndexError, select, selectingIndex, getRandomSelectIndex, excludedIndexes, selectableLength, selectableSize, selectableIndexes} = useRandIndex()
 
-const props              = defineProps(['studentCount'])
+const props              = defineProps(['studentCount', 'questions'])
 const startSelect        = ref(false)
 const selectedStudent    = ref([null, null])
 const students           = ref([[],[]])
@@ -128,6 +130,12 @@ const isAnswerButtonShow = ref(false);
 const factor             = ref(1)
 const points             = ref([0,0])
 const score              = ref([0,0])
+const question_index     = ref(0);
+
+
+const getQuesiton = computed(() => {
+    return props.questions?.[question_index.value % props.questions.length] || {}
+})
 
 onMounted(() => {
     selectableLength.value = props.studentCount
@@ -199,7 +207,8 @@ const answerBTN = (answer) => {
     isAnswerButtonShow.value = false
     if (answer) {
         info.value = "Tebrikler! Doğru cevapladın."
-        
+        question_index.value += 1
+
         trueCorrectArr.value[whoAnswer.value] = [...trueCorrectArr.value[whoAnswer.value], students.value[whoAnswer.value][selectedStudent.value[whoAnswer.value]]]
         
         points.value[whoAnswer.value] = points.value[whoAnswer.value] + factor.value * 10

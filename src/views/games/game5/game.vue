@@ -7,20 +7,27 @@
             </div>
         </div>
 
-        
-
         <div class="flex items-center justify-center p-2" :class="isLoading ? 'invisible':'visible'">
             <button class="btn btn-primary" @click="selectBTN">Seçimi Başlat</button>
         </div>
 
-        <div class="flex items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
+        <div class="flex flex-col items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
+            <div class="h-24">
+                <div v-if="isAnswerButtonShow">
+                    <div class="py-4 text-xl" v-if="getQuesiton?.description">
+                        {{ getQuesiton?.description }}
+                    </div>    
+                </div>
+            </div>
+            
             <div class="flex space-x-2"> 
-                <button class="btn btn-error" @click="answerBTN(false)">Yanlış</button>
-                <button class="btn btn-success" @click="answerBTN(true)">Doğru</button>
+                <button class="btn btn-error btn-sm" @click="answerBTN(false)">Yanlış</button>
+                <button class="btn btn-success btn-sm" @click="answerBTN(true)">Doğru</button>
             </div>
         </div>
+        
         <div class="flex items-center justify-center" :class="info ? 'visible':'invisible'">
-            <div class="w-2/3 bg-blue-200 p-2 rounded-lg">
+            <div class="w-2/3 bg-blue-200 p-2 rounded-lg text-sm">
                 {{ info || '...' }}
             </div>
         </div>
@@ -70,7 +77,7 @@ import {defineProps, ref, onMounted, watch, computed} from 'vue'
 import StudentGroup from '../components/studentGroup.vue';
 import Student from '../components/student.vue';
 
-const props              = defineProps(['studentCount'])
+const props              = defineProps(['studentCount', 'questions'])
 const startSelect        = ref(false)
 const selectedStudent    = ref(null)
 const students          = ref(Array.from({ length: props.studentCount }, (_, index) => index))
@@ -88,6 +95,11 @@ const catRun             = ref(0)
 const catRunInterval     = ref(null)
 const studentRun         = ref(0)
 const studentRunInterval = ref(null)
+const question_index     = ref(0);
+
+const getQuesiton = computed(() => {
+    return props.questions?.[question_index.value % props.questions.length] || {}
+})
 
 
 watch(selectedStudent, (s) => {
@@ -175,6 +187,7 @@ const catStartAnimate = () => {
 
 const answerBTN = (answer) => {
     if (answer) {
+       question_index.value += 1
        info.value = "Tebrikler! Doğru cevapladın."
        trueCorrectArr.value = [...trueCorrectArr.value, students.value[selectedStudent.value]]
        point.value += 5
