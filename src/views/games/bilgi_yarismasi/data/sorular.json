@@ -1,0 +1,82 @@
+[
+   {
+      "level": 1,
+      "question": "Kendi yaptığı teleskobu kullanarak Güneş’in yüzeyini inceleyen bilim insanı kimdir?",
+      "ansvers": ["Galileo Galilei", "Johannes Kepler", "Nicolaus Copernicus","Isaac Newton"]
+   },
+   {
+      "level": 1,
+      "question": "Güneş yüzeyindeki bazı bölgeler diğer bölgelere göre daha karanlık yapıdadır. Bu karanlık bölgelere ne isim verilir?",
+      "ansvers": ["Güneş lekeleri", "Güneş patlamaları", "Güneş yanıkları","Güneş fırtınaları"]
+   },
+   {
+      "level": 1,
+      "question": "Kendiliğinden ısı ve ışık yayabilen, küresel şekilli, doğal gök cisimlerine ne isim verilir?",
+      "ansvers": ["Yıldız", "Gezegen", "Kuyruklu yıldız","Asteroit"]
+   },
+   {
+      "level": 1,
+      "question": "Güneş ile Dünya arasındaki mesafe yaklaşık olarak kaç milyon kilometredir?",
+      "ansvers": ["150", "100", "200","250"]
+   },
+   {
+      "level": 1,
+      "question": "Ay’ın atmosferi yok denecek kadar incedir. Bu nedenle Ay yüzeyine çarpan gök cisimleri burada çukurlar oluşturur. Bu çukurlara ne isim verilir?",
+      "ansvers": ["Krater", "Vadi", "Kanyon","Obruk"]
+   },
+   {
+      "level": 1,
+      "question": "20 Temmuz 1969’da Apollo 11 uzay aracıyla Ay’a ilk ayak basan insan kimdir?",
+      "ansvers": ["Neil Armstrong", "Buzz Aldrin", "Michael Collins","Yuri Gagarin"]
+   },
+   {
+      "level": 1,
+      "question": "“Benim için küçük, insanlık için büyük bir adım.” sözünü söyleyen bilim insanı kimdir?",
+      "ansvers": ["Neil Armstrong", "Buzz Aldrin", "Michael Collins","Yuri Gagarin"]
+   },
+   {
+      "level": 1,
+      "question": "Mikroskobik canlılara 3 adet örnek veriniz?",
+      "ansvers": ["Bakteri, amip, paramesyum", "Maya, mantar, yosun", "Kelebek, pire, kedi","Solucan, yengeç, karınca"]
+   },
+   {
+      "level": 1,
+      "question": "Gelişmiş bir bitkinin kısımları nelerdir?",
+      "ansvers": ["Kök, gövde, yaprak, çiçek", "Kök, meyve, yaprak, filiz", "Gövde, dal, tohum, çiçek","Kök, dal, yaprak, tohum"]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi çiçeksiz bitkilere örnek olarak verilebilir?",
+      "ansvers": ["Eğrelti otu", "Gül", "Elma ağacı","Lale"]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi çiçekli bitkilere örnek olarak verilebilir?",
+      "ansvers": ["Domates", "Eğrelti otu", "At kuytuğu","Kara yosunu"]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi omurgalı canlılara örnek olarak verilebilir?",
+      "ansvers": ["Yarasa", "Kelebek", "arı","sinek"]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi omurgasız canlılara örnek olarak verilebilir?",
+      "ansvers": ["Kelebek", "İnek", "Kedi","Köpek"]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi yaprağın görevlerindendir?",
+      "ansvers": ["Bitkinin oksijen üretmesini sağlar.", "Bitkiyi toprağa bağlar.", "Bitkinin dik durmasını sağlar","Bitkinin üremesini sağlar."]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi sürüngenler grubunda yer alır?",
+      "ansvers": ["Yılan", "Solucan", "Kedi","Yarasa"]
+   },
+   {
+      "level": 1,
+      "question": "Hangisi sürüngenler grubunda yer almaz?",
+      "ansvers": ["Solucan", "Yılan", "Kablumbağa","Bukalemun"]
+   }
+]  

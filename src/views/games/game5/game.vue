@@ -181,7 +181,7 @@ const catStartAnimate = () => {
             clearInterval(studentRunInterval.value)
             isAnswerButtonShow.value = false
         }
-    }, 500);
+    }, 1000);
 }
 
 

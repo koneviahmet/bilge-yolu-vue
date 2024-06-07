@@ -13,6 +13,7 @@
 
         <div class="flex flex-col items-center justify-center" :class="isAnswerButtonShow ? 'visible':'invisible'" >
             <div v-if="isAnswerButtonShow">
+                <div class="flex justify-end">{{ getQuesiton.point }} Puan</div>
                 <div class="py-4 text-xl" v-if="getQuesiton?.description">
                     {{ getQuesiton?.description }}
                 </div>    
