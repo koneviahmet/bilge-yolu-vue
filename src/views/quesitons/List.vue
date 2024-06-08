@@ -7,6 +7,7 @@
       <router-link to="/quesitons/money" class="btn btn-sm">Puanlar</router-link>       
       <router-link to="/quesitons/print" class="btn btn-sm">Yazdır</router-link>       
       <button class="btn btn-sm" @click="confirmDeleteAll()">Tümünü Sil</button>
+      <button class="btn btn-sm" @click="addQuesitonsAll()">Tümünü Ekle</button>
     </div>
 
     <div class="p-2 flex flex-col-reverse">
@@ -26,10 +27,9 @@
           <div class="w-full">{{item.description}}</div>
         </div>
       </div>
-      
     </div>
-
   </div>
+
 
 
   </div>
@@ -38,7 +38,9 @@
 <script setup>
 import { getCurrentInstance, defineEmits, onMounted } from "vue";
 import useQuesitons from "../../compositions/useModelQuesitons";
-const { quesitonsLoading, quesitonsData, quesitonsError, getQuesitonss, deleteQuesitons, confirmDeleteAll} = useQuesitons();
+import dataQuestions from './data/questions.json'
+
+const { quesitonsLoading, quesitonsData, quesitonsError, getQuesitonss, deleteQuesitons, confirmDeleteAll, addQuesitons} = useQuesitons();
 
 const emit = defineEmits(["edit"])
 onMounted(() => getQuesitonss());
@@ -51,5 +53,15 @@ const editBTN = (id) => {
 const itemDelete = (item) => {
   deleteQuesitons(item)
 };
+
+
+const addQuesitonsAll = async () => {
+  for await (const q of dataQuestions) addQuesitons(q)
+}
+
+
+
+
+
 </script>
 

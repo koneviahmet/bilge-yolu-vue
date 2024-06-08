@@ -2,7 +2,7 @@
     <div class="rightContent"> 
         <div class="pullContent">
             <div 
-                class="pull" 
+                class="pull text-lg font-bold  py-2" 
                 v-for="(gamer, x) in gamersFilter(0)" 
                 :key="x" 
                 :style="{'color':pulColor(gamer.pul).color, 'background':pulColor(x).background, 'border-color':pulColor(gamer.pul).border}"
@@ -67,7 +67,6 @@ export default {
     color: #333;
     border-radius: 50%;
     text-align: center;
-    font-size: 2.3vw;
 }
 
 </style>

@@ -13,7 +13,7 @@
             <div class="p-4 flex space-x-4 items-end justify-end">
                 <button class="btn btn-xl mr-2" v-if="!game" @click="start(oyuncuAdedi)">Başla</button>
                 <button class="btn btn-xl mr-2" v-if="game" @click="selectGamer()">Sıradaki Oyuncu</button>
-                <button class="btn btn-xl mr-2" v-if="game" @click="newGame()" hidden>Yeni Oyun</button>
+                <button class="btn btn-xl mr-2 hidden" v-if="game" @click="newGame()" hidden>Yeni Oyun</button>
             </div> 
         </div>
 
@@ -21,7 +21,7 @@
             <div class="">
                 <h4>Oynayan Oyuncu</h4>
                 <div class="selectNumber">
-                    {{oynayanOyuncu}}
+                    {{ oynayanOyuncu }}
                 </div>
             </div>
             <div class="">
@@ -38,7 +38,7 @@
 <script>
 export default {
     name: 'Left',
-    props: ['studentCount'],
+    props: ['studentCount', 'oynayanOyuncu', 'animIlerleme'],
     data() {
         console.log(this.studentCount);
         return {
@@ -53,7 +53,8 @@ export default {
         selectGamer: Function,
         animIlerleme: Number,
         messages: Array,
-        studentCount:Number
+        studentCount:Number,
+        oynayanOyuncu:Number
     }
 }
 </script>

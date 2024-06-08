@@ -1,17 +1,17 @@
 <template>
 <div>
-    <div id="container">
+    <div class="min-h-screen" id="container">
           <div class="centerContainer flex h-full w-full">
               <div class="w-full h-full">
                   <Left 
                     :studentCount="studentCount"
                     :start='start' 
                     :newGame='newGame' 
-                    :game='game' 
-                    :messages='getMessages()'
-                    :zarDurumu='zarDurumu'
-                    :selectGamer='selectGamer'
-                    :oynayanOyuncu='oynayanOyuncu'
+                    :game="game" 
+                    :messages="getMessages()"
+                    :zarDurumu="zarDurumu"
+                    :selectGamer="selectGamer"
+                    :oynayanOyuncu="oynayanOyuncu"
                     :animIlerleme='animIlerleme'
                     />
               </div>
@@ -28,10 +28,10 @@
                     <!----> 
                     <div class="pullContent">
                         <div 
-                            class="pull" 
+                            class="pull text-lg font-bold flex items-center justify-center" 
                             v-for="(gamer, x) in gamersFilter(getSira(i))" 
                             :key="x" 
-                            :style="{'top': 0.4 + 'vw','left':(x * 0.5) + 'vw', 'color':pulColor(gamer.pul).color, 'background':pulColor(x).background, 'border-color':pulColor(gamer.pul).border}"
+                            :style="{'top': 0.3 + 'vw','left':(x * 1.3) + 'vw', 'color':pulColor(gamer.pul).color, 'background':pulColor(x).background, 'border-color':pulColor(gamer.pul).border}"
                             >
                             {{gamer.pul}}
                         </div>
@@ -39,7 +39,7 @@
                      
                     <img :src="getSrc(block.index)" v-if="block.src">
                     <div class="blockTop"><!--{{getSira(i)}}--></div>
-                    <div class="blockBottom" :class="block.text && block.class" v-if="block.text">{{block.text}}</div> 
+                    <div class="blockBottom text-sm py-1" :class="block.text && block.class" v-if="block.text">{{block.text}}</div> 
                      
                 </div>
           </div>
@@ -310,7 +310,7 @@ export default {
     color: #333;
     border-radius: 50%;
     text-align: center;
-    font-size: 1.8vw;
+
 }
 
 .block{
