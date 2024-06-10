@@ -74,8 +74,6 @@ onMounted(() => {
 });
 
 
-
-
 const games = [
   {
     id: 1,
